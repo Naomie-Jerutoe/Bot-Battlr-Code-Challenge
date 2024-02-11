@@ -26,14 +26,16 @@ function App() {
   }, []);
 
   const handleEnlistBot = (bot) => {
-    if (!enlistedBot.some((enlistedBot) => enlistedBot.id === bot.id)) {
+    const classEnlistedBot = enlistedBot.some(
+      (enlistedBot) => enlistedBot.bot_class === bot.bot_class
+    );
+
+    if (!classEnlistedBot) {
       alert(`Successfully enlisted ${bot.name} to your army.`);
       setEnlistedBot((prevEnlistedBots) => [...prevEnlistedBots, bot]);
       setBots((prevBots) => prevBots.filter((b) => b.id !== bot.id));
     } else {
-      alert(
-        `${bot.name} has already been enlisted to your army. Please choose another bot.`
-      );
+      alert(`You can only enlist one bot from the ${bot.bot_class} class.`);
     }
   };
 
@@ -59,10 +61,13 @@ function App() {
   return (
     <div className="content">
       <NavBar />
-      <h3 className="App">
-        Welcome to Bot Battlr, the one and only spot in the known universe where
-        you can custom build your own Bot Army!
-      </h3>
+      <div className="App">
+      <h3>Welcome to Bot Battlr</h3>
+      <p>
+        The one and only spot in the known universe where you can custom build
+        your own Bot Army!
+      </p>
+      </div>
       <Switch>
         <Route exact path="/">
           <BotCollection
