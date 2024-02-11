@@ -12,55 +12,64 @@ function App() {
   const fetchBot = () => {
     fetch("http://localhost:8001/bots")
       .then((res) => {
-        if(!res.ok){
-          throw new Error('Could Not Fetch Data')
+        if (!res.ok) {
+          throw new Error("Could Not Fetch Data");
         }
-        return res.json()})
+        return res.json();
+      })
       .then((data) => setBots(data))
       .catch((err) => console.log(err.message));
   };
 
   useEffect(() => {
     fetchBot();
-  },[]);
+  }, []);
 
   const handleEnlistBot = (bot) => {
     if (!enlistedBot.some((enlistedBot) => enlistedBot.id === bot.id)) {
       alert(`Successfully enlisted ${bot.name} to your army.`);
       setEnlistedBot((prevEnlistedBots) => [...prevEnlistedBots, bot]);
+      setBots((prevBots) => prevBots.filter((b) => b.id !== bot.id));
     } else {
-      alert(`${bot.name} has already been enlisted to your army. Please choose another bot.`);
+      alert(
+        `${bot.name} has already been enlisted to your army. Please choose another bot.`
+      );
     }
   };
 
   const handleRemoveBot = (bot) => {
-    alert (`Successfully removed ${bot.name} from your army.`)
+    alert(`Successfully removed ${bot.name} from your army.`);
     setEnlistedBot((prevEnlistedBots) =>
-    prevEnlistedBots.filter((enlistedBot) => enlistedBot.id !== bot.id)
-  );
-  }
+      prevEnlistedBots.filter((b) => b.id !== bot.id)
+    );
+    setBots((prevBots) => [...prevBots, bot]);
+  };
 
-  const handleDeleteBot = (botId) =>{
-    fetch(`http://localhost:8001/bots/${botId}`,{
-      method: 'DELETE',
+  const handleDeleteBot = (botId) => {
+    fetch(`http://localhost:8001/bots/${botId}`, {
+      method: "DELETE",
     })
-    .then((res) => res.json())
+      .then((res) => res.json())
       .then(() => {
         alert(`The bot of id ${botId} has been deleted.`);
         fetchBot();
       });
-  }
+  };
 
   return (
     <div className="content">
       <NavBar />
       <h3 className="App">
-        Welcome to Bot Battlr, the one and only spot in the known
-        universe where you can custom build your own Bot Army!
+        Welcome to Bot Battlr, the one and only spot in the known universe where
+        you can custom build your own Bot Army!
       </h3>
       <Switch>
         <Route exact path="/">
-          <BotCollection bots={bots} onEnlist={handleEnlistBot} onDelete={handleDeleteBot} />
+          <BotCollection
+            bots={bots}
+            onEnlist={handleEnlistBot}
+            onDelete={handleDeleteBot}
+          />
         </Route>
         <Route path="/myarmy">
           <YourBotArmy enlistedBots={enlistedBot} onRemove={handleRemoveBot} />
