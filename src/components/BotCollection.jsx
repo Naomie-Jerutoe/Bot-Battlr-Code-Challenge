@@ -61,9 +61,9 @@ function BotCollection({ bots, onEnlist, onDelete }) {
                 <p>Armor: {bot.armor}</p>
                 <p style={{fontWeight:"600"}}>Class: {bot.bot_class}</p>
               </div>
-              <div class="button-wrapper">
+              <div className="button-wrapper">
                 <button
-                  class="btn fill"
+                  className="btn fill"
                   title="Delete Bot"
                   onClick={() => onDelete(bot.id)}
                 >
