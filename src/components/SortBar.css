@@ -1,5 +1,8 @@
 .sort-bar {
   width: 30%;
+  top: 30px;
+  right: 10px;
+  position: absolute;
 }
 
 .sort-bar label {
@@ -10,4 +13,6 @@
 .sort-bar select {
   width: 30%;
   margin-left: 5px;
+  padding: 3px;
+  border-radius: 5px;
 }
