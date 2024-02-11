@@ -4,7 +4,7 @@ import "./SortBar.css";
 function SortBar({ onSortChange }) {
   return (
     <div className="sort-bar">
-      <label>
+      <label style={{color:"white"}}>
         Sort Bots By:
         <select
           name="sort"
