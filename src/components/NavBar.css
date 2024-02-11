@@ -1,6 +1,5 @@
 .navbar{
   display: flex-start;
-  color: white;
 }
 
 .navbar ul{
@@ -13,4 +12,5 @@
   list-style: none;
   padding: 5px;
   margin: 5px;
+  font-size: 18px;
 }
