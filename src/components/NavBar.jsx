@@ -13,7 +13,7 @@ function NavBar() {
         </li>
         <li>
           <NavLink to="/myarmy" style={{ color: "white" }}>
-            My Army
+            My Bot Army
           </NavLink>
         </li>
       </ul>
