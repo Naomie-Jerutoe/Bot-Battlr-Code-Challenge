@@ -49,7 +49,7 @@ function BotCollection({ bots, onEnlist, onDelete }) {
             <div key={bot.id} className="container">
               <div
                 className="wrapper"
-                title="Click to see more"
+                title="Click for more details"
                 onClick={() => handleBotClick(bot)}
               >
                 <div className="bot-image">
@@ -59,6 +59,7 @@ function BotCollection({ bots, onEnlist, onDelete }) {
                 <p>Health: {bot.health}</p>
                 <p>Damage: {bot.damage}</p>
                 <p>Armor: {bot.armor}</p>
+                <p style={{fontWeight:"600"}}>Class: {bot.bot_class}</p>
               </div>
               <div class="button-wrapper">
                 <button
