@@ -6,6 +6,7 @@ import SortBar from "./SortBar";
 function BotCollection({ bots, onEnlist, onDelete }) {
   const [clickedBot, setClickedBot] = useState(null);
   const [sortBots, setSortBots] = useState("All");
+  const [botClass, setBotClass] = useState("All");
 
   const handleBotClick = (bot) => {
     setClickedBot(bot);
@@ -18,6 +19,10 @@ function BotCollection({ bots, onEnlist, onDelete }) {
   const handleSortChange = (option) => {
     setSortBots(option);
   };
+
+  const handleClassChange = (option) => {
+    setBotClass(option);
+  }
 
   const sortedBots = () => {
     switch (sortBots) {
@@ -32,10 +37,18 @@ function BotCollection({ bots, onEnlist, onDelete }) {
     }
   };
 
+  const botsFiltered = sortedBots().filter((bot) => {
+    if (botClass === "All") {
+      return true; 
+    } else {
+      return bot.bot_class.toLowerCase() === botClass.toLowerCase();
+    }
+  });  
+
   return (
     <div>
       <div className="sort">
-        <SortBar onSortChange={handleSortChange} />
+        <SortBar onSortChange={handleSortChange} onClassChange={handleClassChange} />
       </div>
       <div className="main">
         {clickedBot ? (
@@ -45,7 +58,7 @@ function BotCollection({ bots, onEnlist, onDelete }) {
             onGoBack={handleGoBack}
           />
         ) : (
-          sortedBots().map((bot) => (
+          botsFiltered.map((bot) => (
             <div key={bot.id} className="container">
               <div
                 className="wrapper"
