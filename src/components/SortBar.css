@@ -5,14 +5,20 @@
   position: absolute;
 }
 
-.sort-bar label {
+.filter-bar{
+  display: flex;
+}
+
+.sort-bar label, .filter-bar label {
   font-size: 18px;
   padding: 5px;
 }
 
-.sort-bar select {
+.sort-bar select, .filter-bar select {
   width: 30%;
   margin-left: 5px;
   padding: 3px;
   border-radius: 5px;
 }
+
+
