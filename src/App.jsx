@@ -33,7 +33,6 @@ function App() {
     if (!classEnlistedBot) {
       alert(`Successfully enlisted ${bot.name} to your army.`);
       setEnlistedBot((prevEnlistedBots) => [...prevEnlistedBots, bot]);
-      setBots((prevBots) => prevBots.filter((b) => b.id !== bot.id));
     } else {
       alert(`You can only enlist one bot from the ${bot.bot_class} class.`);
     }
