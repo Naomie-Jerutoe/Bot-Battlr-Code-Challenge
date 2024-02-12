@@ -17,13 +17,13 @@ function BotSpecs({ bot, onEnlist, onGoBack }) {
         <p>Updated at: {bot.updated_at}</p>
       </div>
       <div class="button-wrapper">
-        <button class="btn outline" onClick={() => onEnlist(bot)}>
+        <button class="btn outline" title="Enlist the bot" onClick={() => onEnlist(bot)}>
           ENLIST
         </button>
         <button
           class="btn outline"
-          title="Go Back"
-          onClick={() => onGoBack(bot.id)}
+          title="Go Back to List"
+          onClick={() => onGoBack()}
         >
           Back
         </button>
