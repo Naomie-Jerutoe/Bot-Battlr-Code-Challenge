@@ -22,7 +22,7 @@ function BotCollection({ bots, onEnlist, onDelete }) {
 
   const handleClassChange = (option) => {
     setBotClass(option);
-  }
+  };
 
   const sortedBots = () => {
     switch (sortBots) {
@@ -39,16 +39,19 @@ function BotCollection({ bots, onEnlist, onDelete }) {
 
   const botsFiltered = sortedBots().filter((bot) => {
     if (botClass === "All") {
-      return true; 
+      return true;
     } else {
       return bot.bot_class.toLowerCase() === botClass.toLowerCase();
     }
-  });  
+  });
 
   return (
     <div>
       <div className="sort">
-        <SortBar onSortChange={handleSortChange} onClassChange={handleClassChange} />
+        <SortBar
+          onSortChange={handleSortChange}
+          onClassChange={handleClassChange}
+        />
       </div>
       <div className="main">
         {clickedBot ? (
@@ -59,20 +62,21 @@ function BotCollection({ bots, onEnlist, onDelete }) {
           />
         ) : (
           botsFiltered.map((bot) => (
-            <div key={bot.id} className="container">
-              <div
-                className="wrapper"
-                title="Click for more details"
-                onClick={() => handleBotClick(bot)}
-              >
-                <div className="bot-image">
-                  <img src={bot.avatar_url} alt={bot.name} />
-                </div>
+            <div
+              key={bot.id}
+              className="container"
+              title="Click for more details"
+              onClick={() => handleBotClick(bot)}
+            >
+              <div className="bot-image">
+                <img src={bot.avatar_url} alt={bot.name} />
+              </div>
+              <div className="bot-details">
                 <h3>Name: {bot.name}</h3>
                 <p>Health: {bot.health}</p>
                 <p>Damage: {bot.damage}</p>
                 <p>Armor: {bot.armor}</p>
-                <p style={{fontWeight:"600"}}>Class: {bot.bot_class}</p>
+                <p style={{ fontWeight: "600" }}>Class: {bot.bot_class}</p>
               </div>
               <div className="button-wrapper">
                 <button
